@@ -1,3 +1,7 @@
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+import javafx.scene.layout.VBox;
 
 public class Interfaz {
 		
@@ -22,7 +26,7 @@ public class Interfaz {
 		panel.getPnlFamilias().add(boton1,boton2,boton3);
 		
 		panel.getChildren().add(p);
-		boton1.setOnAction(e)
+		boton1.setOnAction(e);
 		}
 		
 		public void cambioBotones() {
