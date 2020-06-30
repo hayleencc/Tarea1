@@ -8,18 +8,21 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 public class Ventana extends JFrame {
 	
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 		//VARIABLES
 		private JPanel panel= new JPanel();
 		private JLabel et= new JLabel("Elige un color");
 		private JButton btn1 = new JButton("Boton 1");
 		private JButton btn2 = new JButton("Boton 2");
 		private JButton btn3 = new JButton("Boton 3");
-		private String color;
+		private Color col;
+		private String nombCol;
 		
 		
 		//CONSTRUCTOR
@@ -65,13 +68,30 @@ public class Ventana extends JFrame {
 			panel.add(btn2);
 			panel.add(btn3);
 			
+			agregarEvento();
 			
+		}
+		
+		
+		//A partir de este método, se utilizará el observer
+		public void acciones() { //utilizado para presentar por pantalla el cambio de color
+			panel.setBackground(col);
+			setCol(col);
+		}
+		
+		
+
+
 			//EVENTOS
+		public void agregarEvento() {
 			
 			ActionListener evento1= new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent ae) {
-					panel.setBackground(Color.black);
+					col=Color.black;
+					setNombCol("Negro");
+					acciones();
+					
 				}
 			};
 			
@@ -81,7 +101,10 @@ public class Ventana extends JFrame {
 			ActionListener evento2= new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent ae) {
-					panel.setBackground(Color.blue);
+					col=Color.blue;
+					setNombCol("Azul");
+					acciones();
+					
 				}
 			};
 			
@@ -90,7 +113,10 @@ public class Ventana extends JFrame {
 			ActionListener evento3= new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent ae) {
-					panel.setBackground(Color.LIGHT_GRAY);
+					col=Color.LIGHT_GRAY;
+					setNombCol("Gris claro");
+					acciones();
+					
 				}
 			};
 			
@@ -98,6 +124,28 @@ public class Ventana extends JFrame {
 			
 		}
 
+
+		public Color getCol() {
+			return col;
+		}
+
+
+		public void setCol(Color col) {
+			this.col = col;
+		}
+
+
+		public String getNombCol() {
+			return nombCol;
+		}
+
+
+		public void setNombCol(String nombCol) {
+			this.nombCol = nombCol;
+		}
+
+
+		
 		
 
 	
