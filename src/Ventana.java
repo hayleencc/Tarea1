@@ -1,13 +1,12 @@
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Ventana extends JFrame {
 	
@@ -16,18 +15,20 @@ public class Ventana extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 		//VARIABLES
+		public ArrayList<String> colores = new ArrayList<>();
+		private int clicks = 0;
 		private JPanel panel= new JPanel();
 		private JLabel et= new JLabel("Elige un color");
 		private JButton btn1 = new JButton("Boton 1");
 		private JButton btn2 = new JButton("Boton 2");
 		private JButton btn3 = new JButton("Boton 3");
+		private JButton btn4 = new JButton("INFORME");
 		private Color col;
 		private String nombCol;
 		
-		
 		//CONSTRUCTOR
 		public Ventana() {
-			this.setSize(500, 500);
+			this.setSize(620, 500);
 			this.setLocationRelativeTo(null);
 			this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 			this.setTitle("Cambio de colores de Botones");
@@ -64,6 +65,10 @@ public class Ventana extends JFrame {
 			btn3.setBounds(300, 100, 100, 100);
 			btn3.setBackground(Color.LIGHT_GRAY);
 			
+			btn4.setForeground(Color.white);
+			btn4.setBounds(400, 100, 100, 100);
+			btn4.setBackground(Color.yellow);
+			
 			panel.add(btn1);
 			panel.add(btn2);
 			panel.add(btn3);
@@ -72,16 +77,22 @@ public class Ventana extends JFrame {
 			
 		}
 		
-		
 		//A partir de este método, se utilizará el observer
 		public void acciones() { //utilizado para presentar por pantalla el cambio de color
+			clicks++;
 			panel.setBackground(col);
 			setCol(col);
+			colores.add(nombCol);
+			if(clicks%10 == 0) {
+				panel.add(btn4);
+			}
+		}
+
+		public void Actualizacion() {
+			System.out.printf("");
 		}
 		
 		
-
-
 			//EVENTOS
 		public void agregarEvento() {
 			
@@ -113,7 +124,7 @@ public class Ventana extends JFrame {
 			ActionListener evento3= new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent ae) {
-					col=Color.LIGHT_GRAY;
+					col=Color.lightGray;
 					setNombCol("Gris claro");
 					acciones();
 					
@@ -121,6 +132,22 @@ public class Ventana extends JFrame {
 			};
 			
 			btn3.addActionListener(evento3);
+			
+			ActionListener evento4= new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent ae) {
+					
+					System.out.print("\nCANTIDAD DE COLORES INGRESADOS: "+ colores.size());
+					System.out.print("\nARREGLO: ");
+					for (String col : colores) {
+						System.out.print(col+", ");
+						panel.remove(btn4);
+					}
+					Actualizacion();
+				}
+			};
+			
+			btn4.addActionListener(evento4);
 			
 		}
 
