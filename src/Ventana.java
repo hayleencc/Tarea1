@@ -1,5 +1,7 @@
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -47,8 +49,8 @@ public class Ventana extends JFrame {
 
 		
 		public void colocarBotones() {
-			btn1.setBounds(100, 100, 100, 100);
 			btn1.setForeground(Color.white);
+			btn1.setBounds(100, 100, 100, 100);
 			btn1.setBackground(Color.black);
 
 			btn2.setForeground(Color.white);
@@ -62,12 +64,41 @@ public class Ventana extends JFrame {
 			panel.add(btn1);
 			panel.add(btn2);
 			panel.add(btn3);
+			
+			
+			//EVENTOS
+			
+			ActionListener evento1= new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent ae) {
+					panel.setBackground(Color.black);
+				}
+			};
+			
+			btn1.addActionListener(evento1);
+			
+			
+			ActionListener evento2= new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent ae) {
+					panel.setBackground(Color.blue);
+				}
+			};
+			
+			btn2.addActionListener(evento2);
+			
+			ActionListener evento3= new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent ae) {
+					panel.setBackground(Color.LIGHT_GRAY);
+				}
+			};
+			
+			btn3.addActionListener(evento3);
+			
 		}
 
 		
-		public void cambioDeColor( ) {
-			panel.setBackground(Color.PINK);
-		}
 
 	
 }
